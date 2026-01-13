@@ -43,13 +43,17 @@ if st.sidebar.button("등록"):
         st.sidebar.success(
             f"✅ 등록 완료: {new_tx['date']} / {new_tx['type']} / {new_tx['category']} / {new_tx['description']} / {new_tx['amount']:,}원"
         )
-        st.rerun()
+       
 
 st.sidebar.divider()
 st.sidebar.header("🔎 필터(선택)")
 
 # 간단한 기간 필터(도전 D1) - 값이 하나면 Streamlit 버전에 따라 단일 날짜로 나올 수 있어 방어
-date_range = st.sidebar.date_input("기간 선택", value=None)
+date_range = st.sidebar.date_input(
+    "기간 선택",
+    value=[]
+)
+
 
 keyword = st.sidebar.text_input("검색어(내용 포함)", placeholder="예: 점심").strip()
 keyword = keyword if keyword else ""
@@ -119,14 +123,23 @@ else:
     )
 
     chart = (
-        alt.Chart(cat_df)
-        .mark_bar()
-        .encode(
-            x=alt.X("카테고리:N", axis=alt.Axis(labelAngle=0)),
-            y=alt.Y("지출합계:Q"),
-            tooltip=["카테고리", "지출합계"],
-        )
+    alt.Chart(cat_df)
+    .mark_bar()
+    .encode(
+        x=alt.X(
+            "카테고리:N",
+            sort="-y",
+            axis=alt.Axis(labelAngle=0)
+        ),
+        y=alt.Y(
+            "지출합계:Q",
+            title="지출 합계",
+            axis=alt.Axis(titleAngle=0)
+        ),
+        tooltip=["카테고리", "지출합계"],
     )
+)
+
 
     st.altair_chart(chart, use_container_width=True)
     st.dataframe(cat_df, use_container_width=True)
