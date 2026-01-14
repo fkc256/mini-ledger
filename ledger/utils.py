@@ -1,11 +1,9 @@
-HEAD
 from datetime import date, datetime
 
 
 def to_date_str(d) -> str:
-    """Streamlit date_input 결과(date/datetime)를 'YYYY-MM-DD' 문자열로 통일."""
-    if isinstance(d, datetime):
-        return d.date().isoformat()
+# 날짜와 기간선택에 사용됨, 문자열이 입력 되지 않고 숫자만
+# 입력 가능하게 하는 함수
     if isinstance(d, date):
         return d.isoformat()
     # 문자열이 들어오는 경우도 방어
@@ -13,30 +11,8 @@ def to_date_str(d) -> str:
 
 
 def normalize_text(s: str) -> str:
-    """앞뒤 공백 제거 + 내부적으로 None 방어."""
-    if s is None:
-        return ""
-    return str(s).strip()
-
-
-
-# 금액 검증 추가
-=======
-from datetime import date, datetime
-
-
-def to_date_str(d) -> str:
-    """Streamlit date_input 결과(date/datetime)를 'YYYY-MM-DD' 문자열로 통일."""
-    if isinstance(d, datetime):
-        return d.date().isoformat()
-    if isinstance(d, date):
-        return d.isoformat()
-    # 문자열이 들어오는 경우도 방어
-    return str(d)[:10]
-
-
-def normalize_text(s: str) -> str:
-    """앞뒤 공백 제거 + 내부적으로 None 방어."""
+    #새 거래를 입력할때 카테고리와 내용에 공란이 발생하지 않게하며,
+    #앞 뒤 공백도 제거하는 함수
     if s is None:
         return ""
     return str(s).strip()
