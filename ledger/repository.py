@@ -7,7 +7,7 @@ CSV_COLUMNS = ["date", "type", "category", "description", "amount"]
 
 
 def load_transactions(path: str = CSV_PATH):
-    """CSV가 있으면 읽고, 없으면 빈 리스트."""
+    """CSV가 있으면 리스트로 변환하여 읽고, 없으면 빈 리스트."""
     if not os.path.exists(path):
         return []
 
