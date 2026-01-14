@@ -159,6 +159,5 @@ else:
 
     #생성된 차트를 화면에 표시
     st.altair_chart(chart, use_container_width=True)
-    
     #차트 아래 상세 수치 데이터프레임 추가 표시
     st.dataframe(cat_df, use_container_width=True)
