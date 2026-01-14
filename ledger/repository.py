@@ -1,13 +1,13 @@
 import os
 import csv
 
-DATA_DIR = "data" #데이터를 저장할 곳
-CSV_PATH = os.path.join(DATA_DIR, "ledger.csv") #파일 경로(DATA_DIR로 정의되어 있는 폴더에 있는 ledger.csv파일로 연결, os 별로 구분자가 다름을 방지)
+DATA_DIR = "data"
+CSV_PATH = os.path.join(DATA_DIR, "ledger.csv")
 CSV_COLUMNS = ["date", "type", "category", "description", "amount"]
 
 
 def load_transactions(path: str = CSV_PATH):
-    """CSV가 있으면 읽고, 없으면 빈 리스트."""
+    """CSV가 있으면 리스트로 변환하여 읽고, 없으면 빈 리스트."""
     if not os.path.exists(path):
         return []
 
