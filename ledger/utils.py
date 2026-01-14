@@ -16,3 +16,7 @@ def normalize_text(s: str) -> str:
     if s is None:
         return ""
     return str(s).strip()
+
+
+
+# 금액 검증 추가
